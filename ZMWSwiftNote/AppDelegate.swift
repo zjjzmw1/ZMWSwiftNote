@@ -8,15 +8,34 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // statusBar
+        self.setupWithStatusBar(application: application)
+        // 初始化window
+        self.window = UIWindow()
+        self.window?.backgroundColor = UIColor.white
+        self.window?.frame = CGRect.init(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+        // 不用导入头文件
+        self.window?.rootViewController = ViewController()
+        self.window?.makeKeyAndVisible()
+        
         return true
+    }
+
+    // 状态栏
+    func setupWithStatusBar(application: UIApplication) {
+        // 设置状态栏隐藏
+        application.isStatusBarHidden = true;
+        // 设置状态栏高亮
+        application.statusBarStyle = UIStatusBarStyle.lightContent;
+        application.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true);
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
